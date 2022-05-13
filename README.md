@@ -95,8 +95,8 @@ management:
  
    *Con CMD ejecutamos el jar copiado dentro de la carpeta jars.*
    
-**5. Con todos los dockerfile creados dentro de cada servicio, levantamos cada una de las imágenes de los servicios: 
-(Cada build lo ejecutamos dentro del path del dockerfile de cada servicio)**
+**5. Con todos los dockerfile creados dentro de cada servicio, levantamos cada una de las imágenes de los servicios 
+(cada build lo ejecutamos dentro del path donde se encuentra el dockerfile de cada servicio):**
 
 ` docker build -t eurekaservice:1.0 . `
 
