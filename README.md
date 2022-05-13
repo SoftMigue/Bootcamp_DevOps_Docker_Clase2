@@ -10,6 +10,6 @@
 
 ` <groupId>mysql</groupId>`
 
-` <artifactId>mysql-connector-java</artifactId>
+` <artifactId>mysql-connector-java</artifactId> `
 
- <scope>runtime</scope>`
+` <scope>runtime</scope> `
