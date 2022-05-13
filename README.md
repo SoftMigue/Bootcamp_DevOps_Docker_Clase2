@@ -127,13 +127,23 @@ management:
  
  ![image](https://user-images.githubusercontent.com/69739273/168346897-5eebc7a6-9297-4799-938f-bf5108585049.png)
 
-**9. Para crear un repositorio local de nuestras imágenes hacemos uso de Docker registry. Lo levantamos con el comando:**
+**9. Para crear un repositorio local de nuestras imágenes hacemos uso de Docker registry. Una vez creado el registry podremos hacer push y pull de nuestras imágenes a este nuevo repositorio local. Lo levantamos con el comando:**
 
 ` docker run -d -p 5000:5000 -v /mnt/registry:/var/lib/registry  --restart=always --name bootcamp-registry registry:2 `
 
-**10. Para tagear una imagen a nuestro nuevo repositorio local usamos el comando docker tag y comprobamos con docker images que se ha levantado, por ejemplo:**
+**10. Para tagear una imagen a nuestro nuevo repositorio local usamos el comando docker tag y comprobamos con docker images que se ha levantado. Con el tag vamos a crear una etiqueta para la imagen del nuevo repositorio. Por ejemplo:**
 
 ` docker tag adminservice:1.0 172.28.128.80:5000/imagenadminregistry `
 
 ![image](https://user-images.githubusercontent.com/69739273/168373540-e8a5fec3-3c42-4629-9b75-f7276248e144.png)
+
+**11. Ejemplo de push:**
+
+` docker push 172.28.128.80:5000/imagenadminregistry:latest `
+
+![image](https://user-images.githubusercontent.com/69739273/168390425-b834fc37-e6be-4444-a1dd-41b442311fa7.png)
+
+**12. Ejemplo de pull:**
+
+` docker pull 172.28.128.80:5000/imagenadminregistry:latest ` 
 
