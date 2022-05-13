@@ -6,7 +6,7 @@
 
 1. En el nuevo proyecto priceservicemysql nos dirigimimos a la raíz /source y dentro del pom.xml añadimos la siguiente dependencia de mysql:
 
-   <dependency>
+  ` <dependency>
 <groupId>mysql</groupId>
 <artifactId>mysql-connector-java</artifactId>
-<scope>runtime</scope>
+<scope>runtime</scope> `
