@@ -123,7 +123,7 @@ management:
 
 ` docker run -d -p 5000:5000 -v /mnt/registry:/var/lib/registry  --restart=always --name bootcamp-registry registry:2 `
 
-**10. Para tagear una imagen a nuestro nuevo repositorio local usamos el comando docker tag, por ejemplo:**
+**10. Para tagear una imagen a nuestro nuevo repositorio local usamos el comando docker tag y comprobamos con docker images que se ha levantado, por ejemplo:**
 
 ` docker tag adminservice:1.0 172.28.128.80:5000/imagenadminregistry `
 
