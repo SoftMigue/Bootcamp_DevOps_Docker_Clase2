@@ -1,0 +1,74 @@
+version: '2'
+
+# Names our volume
+volumes:
+  database-volume:
+services:
+    price-database:
+        image: mysql:8.0.25
+        environment:
+            - MYSQL_DATABASE=prices
+            - MYSQL_USER=sa
+            - MYSQL_PASSWORD=password
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+        ports:
+            - 3306:3306
+        command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8 --explicit_defaults_for_timestamp
+        volumes:
+            - database-volume:/var/lib/mysql
+    eureka-service:
+        depends_on:
+            - price-database
+        command: ''
+        image: eurekaservice:1
+        ports:
+            - 8761:9090
+        logging:
+            driver: 'json-file'
+    product-service:
+        depends_on:
+            - eureka-service
+        command: ''
+        image: productservice:1
+        environment:
+            - EUREKA_SERVER=http://eureka-service:9090/eureka/
+        ports:
+            - 8081:9090
+        logging:
+            driver: 'json-file'
+    price-service:
+        depends_on:
+            - price-database
+            - eureka-service
+        command: ''
+        image: priceservicemysql:1
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:mysql://price-database:3306/prices?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+            - SPRING_DATASOURCE_USERNAME=sa
+            - SPRING_DATASOURCE_PASSWORD=password
+            - EUREKA_SERVER=http://eureka-service:9090/eureka/
+        ports:
+            - 8082:9090
+        logging:
+            driver: 'json-file'
+    zuul-service:
+        depends_on:
+            - price-service
+            - product-service
+        command: ''
+        image: zuulservice:1
+        environment:
+            - EUREKA_SERVER=http://eureka-service:9090/eureka/
+        ports:
+            - 9090:9090
+        logging:
+            driver: 'json-file'
+    admin-service:
+        depends_on:
+            - price-service
+            - product-service
+        command: ''
+        image: adminservice:1.0
+        ports:
+            - 9091:9090
+

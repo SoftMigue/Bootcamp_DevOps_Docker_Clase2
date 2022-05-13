@@ -1,0 +1,10 @@
+FROM openjdk:11
+
+ENV SERVER_PORT=9090 \
+    APPLICATION=inner-spring-boot-app
+
+EXPOSE ${SERVER_PORT}
+
+COPY *.jar /jars/${APPLICATION}.jar
+
+CMD java -jar /jars/${APPLICATION}.jar
