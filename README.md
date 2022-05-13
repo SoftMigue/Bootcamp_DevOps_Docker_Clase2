@@ -76,7 +76,7 @@ management:
    
    > EXPOSE ${SERVER_PORT} 
 
-   *Expose no es obligatorio y no afecta al funcionamiento, solo indica el puerto de escucha del contenedor.*
+   *Expose no es obligatorio y no afecta al funcionamiento, solo documenta el puerto de escucha del contenedor.*
    
    > COPY *.jar /jars/${APPLICATION}.jar 
 
@@ -85,4 +85,12 @@ management:
    > CMD java -jar /jars/${APPLICATION}.jar
  
    *Con CMD ejecutamos el jar copiado dentro de la carpeta jars.*
+   
+**5. Con todos los dockerfile creados dentro de cada servicio, levantamos cada una de las imágenes de los servicios: **
+(Cada build lo ejecutamos dentro del path del dockerfile de cada servicio)
+` docker build -t eurekaservice:1.0 . `
+` docker build -t priceservicemysql:1.0 . `
+` docker build -t productservice:1.0 . `
+` docker build -t adminservice:1.0 . `
+` docker build -t zuulservice:1.0 . `
 
