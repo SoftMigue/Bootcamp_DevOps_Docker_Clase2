@@ -6,13 +6,13 @@
 
 **1. En el nuevo proyecto priceservicemysql nos dirigimimos a la raíz /source y dentro del pom.xml añadimos la siguiente dependencia de mysql:**
 
-` <dependency> `
+     ` <dependency> `
 
-` <groupId>mysql</groupId>`
+     ` <groupId>mysql</groupId>`
 
-` <artifactId>mysql-connector-java</artifactId> `
+     ` <artifactId>mysql-connector-java</artifactId> `
 
-` <scope>runtime</scope> `
+     ` <scope>runtime</scope> `
 
 **2. Dentro de application.yml (/servicio/src/main/resources/) añadimos las siguientes configuraciones de spring (en jpa configuramos la bd mysql, con datasource implementamos el patrón de conexión hiraki) y eureka (indicamos la ruta en la que levantará)**:
 
@@ -59,26 +59,26 @@ management:
    ```
       
 **3. Con las configuraciones hechas, compilamos el proyecto para crear el nuevo .jar con el siguiente comando situándonos dentro del directorio de los binarios de nuestro priceservice-mysql:**
-> cd /home/devops/Road2Cloud/00.Microservices/binaries/priceservice-mysql/
+     > cd /home/devops/Road2Cloud/00.Microservices/binaries/priceservice-mysql/
 
-> docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true 
+     > docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true 
 
 **4. Ahora creamos dentro de cada una de la carpeta de binarios de cada servicio, un archivo dockerfile con la configuración de las imágenes de cada servicio que vamos a crear. Las instrucciones que vamos a indicar son:**
 
-> FROM openjdk:11 
+     > FROM openjdk:11 
 
-  Conecta la imagen que vamos a crear con la imagen del jdk 11 previamente montada en nuestra máquina (en nuestro caso la trae montada, pero se podría pullear de docker hub)
-> ENV SERVER_PORT=9090 \
-      APPLICATION=inner-spring-boot-app 
+       Conecta la imagen que vamos a crear con la imagen del jdk 11 previamente montada en nuestra máquina (en nuestro caso la trae montada, pero se podría pullear de docker hub)
+     > ENV SERVER_PORT=9090 \
+       APPLICATION=inner-spring-boot-app 
+       
+       Definimos las variables de entorno para indicar un puerto y que vamos a utilizar la imagen jar interna (con esto evitamos errores y facilitamos la reutilización del fichero). Las variables de entorno sirven para facilitar el trabajo con archivos complejos y ofrecer ficheros más legibles.
+     > EXPOSE ${SERVER_PORT} 
 
-  Definimos las variables de entorno para indicar un puerto y que vamos a utilizar la imagen jar interna (con esto evitamos errores y facilitamos la reutilización del fichero). Las variables de entorno sirven para facilitar el trabajo con archivos complejos y ofrecer ficheros más legibles.
-> EXPOSE ${SERVER_PORT} 
+       Expose no es obligatorio y no afecta al funcionamiento, solo indica el puerto de escucha del contenedor
+     > COPY *.jar /jars/${APPLICATION}.jar 
 
-  Expose no es obligatorio y no afecta al funcionamiento, solo indica el puerto de escucha del contenedor
-> COPY *.jar /jars/${APPLICATION}.jar 
-
-  Con COPY copiamos el jar interno a la nueva carpeta jars
-> CMD java -jar /jars/${APPLICATION}.jar
+       Con COPY copiamos el jar interno a la nueva carpeta jars
+     > CMD java -jar /jars/${APPLICATION}.jar
  
-  Con CMD ejecutamos el jar copiado dentro de la carpeta jars
+       Con CMD ejecutamos el jar copiado dentro de la carpeta jars
 
