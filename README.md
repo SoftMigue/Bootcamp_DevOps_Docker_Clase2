@@ -111,10 +111,18 @@ management:
    - depends_on: aquí indicamos los nombres de nos servicios que tienen que estar desplegados para que cada uno funcione
    - environment: para añadir variables de entorno que nos permiten setear valores
  
- **8. Creamos todos los contenedores orquestados por el fichero docker-compose utilizando un solo comando. Para ello nos colocamos en el path del fichero y ejecutamos:
+ **8. Creamos todos los contenedores orquestados por el fichero docker-compose utilizando un solo comando. Para ello nos colocamos en el path del fichero y ejecutamos:**
  
  ` cd /home/devops/Road2Cloud/00.Microservices/binaries/ `
+ 
  ` docker-compose up `
  
  ![image](https://user-images.githubusercontent.com/69739273/168346897-5eebc7a6-9297-4799-938f-bf5108585049.png)
 
+**9. Para crear un repositorio local de nuestras imágenes hacemos uso de Docker registry. Lo levantamos con el comando:
+
+` docker run -d -p 5000:5000 -v /mnt/registry:/var/lib/registry  --restart=always --name bootcamp-registry registry:2 `
+
+**10. Para tagear una imagen a nuestro nuevo repositorio local usamos el comando:**
+
+`  `
