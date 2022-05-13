@@ -81,7 +81,7 @@ management:
    > ENV SERVER_PORT=9090 \
        APPLICATION=inner-spring-boot-app 
        
-   *Definimos las variables de entorno para indicar un puerto y que vamos a utilizar la imagen jar interna (con esto evitamos errores y facilitamos la reutilización del fichero). Las variables de entorno sirven para facilitar el trabajo con archivos complejos y ofrecer ficheros más legibles.*
+   *Definimos las variables de entorno para indicar un puerto y que vamos a utilizar la imagen jar interna (con esto podemos setear valores).*
    
    > EXPOSE ${SERVER_PORT} 
 
@@ -95,8 +95,8 @@ management:
  
    *Con CMD ejecutamos el jar copiado dentro de la carpeta jars.*
    
-**5. Con todos los dockerfile creados dentro de cada servicio, levantamos cada una de las imágenes de los servicios: **
-(Cada build lo ejecutamos dentro del path del dockerfile de cada servicio)
+**5. Con todos los dockerfile creados dentro de cada servicio, levantamos cada una de las imágenes de los servicios: 
+(Cada build lo ejecutamos dentro del path del dockerfile de cada servicio)**
 
 ` docker build -t eurekaservice:1.0 . `
 
@@ -112,7 +112,7 @@ management:
 
 ` cd /home/devops/Road2Cloud/00.Microservices/binaries/ `
 
-**7. Definimos la configuración del docker-compose: **
+**7. Definimos la configuración del docker-compose:**
    - services: declaramos todos nombres de los servicios que vamos a usar
    - image: es el nombre de la imagen con su tag, por ejemplo adminserver:1.0. Con esta imagen se despliega el servicio
    - ports: declaramos el puerto por donde va a levantar el contenedor en el host
@@ -127,7 +127,7 @@ management:
  
  ![image](https://user-images.githubusercontent.com/69739273/168346897-5eebc7a6-9297-4799-938f-bf5108585049.png)
 
-**9. Para crear un repositorio local de nuestras imágenes hacemos uso de Docker registry. Lo levantamos con el comando:
+**9. Para crear un repositorio local de nuestras imágenes hacemos uso de Docker registry. Lo levantamos con el comando:**
 
 ` docker run -d -p 5000:5000 -v /mnt/registry:/var/lib/registry  --restart=always --name bootcamp-registry registry:2 `
 
