@@ -62,7 +62,7 @@ management:
 
    ` cd /home/devops/Road2Cloud/00.Microservices/binaries/priceservice-mysql/ `
 
-   > docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true 
+   ` docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true `
 
 **4. Ahora creamos dentro de cada una de la carpeta de binarios de cada servicio, un archivo dockerfile con la configuración de las imágenes de cada servicio que vamos a crear. Las instrucciones que vamos a indicar son:**
 
@@ -100,3 +100,6 @@ management:
 
 ` docker build -t zuulservice:1.0 . `
 
+**6. Creamos el fichero docker-compose.yml:
+
+` cd /home/devops/Road2Cloud/00.Microservices/binaries/ `
