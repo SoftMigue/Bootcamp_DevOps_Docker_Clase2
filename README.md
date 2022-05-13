@@ -59,7 +59,8 @@ management:
    ```
       
 **3. Con las configuraciones hechas, compilamos el proyecto para crear el nuevo .jar con el siguiente comando situándonos dentro del directorio de los binarios de nuestro priceservice-mysql:**
-   > cd /home/devops/Road2Cloud/00.Microservices/binaries/priceservice-mysql/
+
+   ` cd /home/devops/Road2Cloud/00.Microservices/binaries/priceservice-mysql/ `
 
    > docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true 
 
