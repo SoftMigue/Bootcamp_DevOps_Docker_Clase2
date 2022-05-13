@@ -88,6 +88,7 @@ management:
    
 **5. Con todos los dockerfile creados dentro de cada servicio, levantamos cada una de las imágenes de los servicios: **
 (Cada build lo ejecutamos dentro del path del dockerfile de cada servicio)
+
 ` docker build -t eurekaservice:1.0 . `
 
 ` docker build -t priceservicemysql:1.0 . `
