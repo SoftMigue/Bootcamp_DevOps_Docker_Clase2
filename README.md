@@ -1,7 +1,9 @@
 # Bootcamp_DevOps_Docker_Clase2
----
+
 ***ADJUNTO UN SOLO DOCKERFILE QUE COMPARTO CON TODOS LOS SERVICIOS YA QUE CON LA VARIABLE DE ENTORNO EJECUTO EL JAR INTERNO DE CADA SERVICIO***
+
 ---
+
 ## Anotaciones y resumen de la segunda clase de Docker: Docker Compose y Docker Registry
 
 
