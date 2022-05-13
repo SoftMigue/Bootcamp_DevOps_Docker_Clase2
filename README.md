@@ -16,7 +16,8 @@
 
 ** 2. Dentro de application.yml (/servicio/src/main/resources/) añadimos las siguientes propiedades:
 
- ` spring:
+ ```yml
+ spring:
   application:
     name: bootcamp-priceservice-mysql
   datasource:
@@ -54,4 +55,4 @@ management:
         include: "*"
   endpoint:
     health:
-      show-details: ALWAYS `
+      show-details: ALWAYS ```
