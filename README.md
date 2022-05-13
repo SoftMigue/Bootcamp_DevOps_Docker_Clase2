@@ -100,6 +100,21 @@ management:
 
 ` docker build -t zuulservice:1.0 . `
 
-**6. Creamos el fichero docker-compose.yml:
+**6. Creamos el fichero docker-compose.yml:**
 
 ` cd /home/devops/Road2Cloud/00.Microservices/binaries/ `
+
+**7. Definimos la configuración del docker-compose: **
+   - services: declaramos todos nombres de los servicios que vamos a usar
+   - image: es el nombre de la imagen con su tag, por ejemplo adminserver:1.0. Con esta imagen se despliega el servicio
+   - ports: declaramos el puerto por donde va a levantar el contenedor en el host
+   - depends_on: aquí indicamos los nombres de nos servicios que tienen que estar desplegados para que cada uno funcione
+   - environment: para añadir variables de entorno que nos permiten setear valores
+ 
+ **8. Creamos todos los contenedores orquestados por el fichero docker-compose utilizando un solo comando. Para ello nos colocamos en el path del fichero y ejecutamos:
+ 
+ ` cd /home/devops/Road2Cloud/00.Microservices/binaries/ `
+ ` docker-compose up `
+ 
+ ![image](https://user-images.githubusercontent.com/69739273/168346897-5eebc7a6-9297-4799-938f-bf5108585049.png)
+
