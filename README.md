@@ -55,6 +55,8 @@ management:
         include: "*"
   endpoint:
     health:
-      show-details: ALWAYS ```
+      show-details: ALWAYS 
+   ```
       
-**4 
+**3. Con las configuraciones hechas, compilamos el proyecto para crear el nuevo .jar con el siguiente comando:**
+> docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true 
