@@ -6,13 +6,13 @@
 
 **1. En el nuevo proyecto priceservicemysql nos dirigimimos a la raíz /source y dentro del pom.xml añadimos la siguiente dependencia de mysql:**
 
-     ` <dependency> `
+   ` <dependency> `
 
-     ` <groupId>mysql</groupId>`
+   ` <groupId>mysql</groupId>`
 
-     ` <artifactId>mysql-connector-java</artifactId> `
+   ` <artifactId>mysql-connector-java</artifactId> `
 
-     ` <scope>runtime</scope> `
+   ` <scope>runtime</scope> `
 
 **2. Dentro de application.yml (/servicio/src/main/resources/) añadimos las siguientes configuraciones de spring (en jpa configuramos la bd mysql, con datasource implementamos el patrón de conexión hiraki) y eureka (indicamos la ruta en la que levantará)**:
 
@@ -59,9 +59,9 @@ management:
    ```
       
 **3. Con las configuraciones hechas, compilamos el proyecto para crear el nuevo .jar con el siguiente comando situándonos dentro del directorio de los binarios de nuestro priceservice-mysql:**
-     > cd /home/devops/Road2Cloud/00.Microservices/binaries/priceservice-mysql/
+   > cd /home/devops/Road2Cloud/00.Microservices/binaries/priceservice-mysql/
 
-     > docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true 
+   > docker run -it --rm --network host --name priceservice-maven -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.8.1-openjdk-11 mvn clean install -Dmaven.test.skip=true 
 
 **4. Ahora creamos dentro de cada una de la carpeta de binarios de cada servicio, un archivo dockerfile con la configuración de las imágenes de cada servicio que vamos a crear. Las instrucciones que vamos a indicar son:**
 
